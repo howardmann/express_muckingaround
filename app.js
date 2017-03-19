@@ -26,7 +26,11 @@ app.use(function(req, res, next) {
 });
 
 // ===BP: EXPRESS-HANDLEBARS
-app.engine('hbs', require('express-handlebars')({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));
+var exphbs = require('express-handlebars');
+var helpers = require('./views/helpers.js');
+var handlebars = exphbs.create({helpers, extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'});
+
+app.engine('hbs', handlebars.engine);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,7 +39,8 @@ app.set('view engine', 'hbs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json({type: 'application/vnd.api+json'}));
+app.use(bodyParser.json());
+// app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 

@@ -4,6 +4,7 @@ var router = express.Router();
 // Require controllers
 var users = require('../controllers/users.js');
 var posts = require('../controllers/posts.js');
+var terminators = require('../controllers/terminators.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -33,7 +34,9 @@ router
     .get('/users/:id/posts/new', posts.newUser)
     .post('/users/:id/posts', posts.createUser);
 
-
+// TERMINATORS
+  router
+    .get('/terminators', terminators.index);
 
 
 module.exports = router;
