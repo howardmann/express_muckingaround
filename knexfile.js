@@ -14,7 +14,7 @@ module.exports = {
       host: "127.0.0.1",
       user: "howardmann",
       password: '',
-      database: "express_boilerplate"
+      database: "mocha_test"
     },
     migrations: {
       directory: __dirname + '/db/migrations'
@@ -32,6 +32,6 @@ module.exports = {
     },
     seeds: {
       directory: __dirname + '/db/seeds'
-    }        
+    }
   }
 }
